@@ -1,2 +1,2 @@
-# Bash-Scipts
-Handy bash scripts
+# BCBL-Scripts
+Handy bash and python scripts
