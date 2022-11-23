@@ -1,0 +1,59 @@
+# Batch analysis script for VB and GLM analysis
+
+OutputFolder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/sub-007/ses-02/func_preproc/qp_out
+Debug: False
+
+Processing:
+  - Load:
+      data:
+        00.sub-007_ses-02_task-breathhold_optcom_bold_native_preprocessed.dt.nii.gz: _0072
+        sub-007_ses-01_task-breathhold_rec-magnitude_echo-1_sbref_brain_mask.nii.gz: sub007_ses01_taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+        cvr1_lGLM.nii: cvr1_lGLM
+        delay_lGLM.nii: delay_lGLM
+        sig0_lGLM.nii: sig0_lGLM
+        cvr1_vb.nii: cvr1_vb
+        sig0_vb.nii: sig0_vb
+        delay_vb.nii: delay_vb
+      rois:
+        sub-007_ses-01_task-breathhold_rec-magnitude_echo-1_sbref_brain_mask.nii.gz: sub007_ses01_taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+
+  # Additional processing steps go here
+
+  - CvrPetCo2Vb: 
+      data: _0072
+      roi: sub007_ses01_taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+      tr: 1.5
+      baseline: 0
+      regressors: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/sub-007/ses-02/func_preproc/sub-007_ses-02_task-breathhold_physio_co_peakline.1D
+      regressor_trs: 0.025
+      regressor_types: petco2
+      infer-sig0: True
+      infer-delay: True
+      max-iterations: 10
+      output-var: True
+      output-suffix: _vb
+
+  - CvrPetCo2Glm: 
+      data: _0072
+      roi: sub007_ses01_taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+      tr: 1.5
+      baseline: 0
+      regressors: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/sub-007/ses-02/func_preproc/sub-007_ses-02_task-breathhold_physio_co_peakline.1D
+      regressor_trs: 0.025
+      regressor_types: petco2
+      delay-min: -8.0
+      delay-max: 8.0
+      delay-step: 1.0
+      output-suffix: _lGLM
+
+  - SaveAllExcept:
+      _0072:
+      sub007_ses01_taskbreathhold_recmagnitude_echo1_sbref_brain_mask:
+      sig0_lGLM:
+      sig0_vb:
+      sub007_ses01_taskbreathhold_recmagnitude_echo1_sbref_brain_mask:
+
+Cases:
+  Case1:
+    Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/sub-007/ses-02/func_preproc
+

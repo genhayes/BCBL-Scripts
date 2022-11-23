@@ -1,0 +1,196 @@
+# Batch analysis script for VB and GLM analysis
+
+OutputFolder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data/qp_lGLM_ts025_out
+Debug: False
+
+Processing:
+  - Load:
+      data:
+        task-breathhold_meica-cons_bold_native_preprocessed.dt.nii.gz: taskbreathhold_meicacons_bold_native_preprocessed
+        task-breathhold_rec-magnitude_echo-1_sbref_brain_mask.nii.gz: taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+      rois:
+        task-breathhold_rec-magnitude_echo-1_sbref_brain_mask.nii.gz: taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+
+  # Additional processing steps go here
+
+#   - CvrPetCo2Vb: 
+#       data: taskbreathhold_meicacons_bold_native_preprocessed
+#       roi: taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+#       tr: 1.5
+#       baseline: 0
+#       regressors: task-breathhold_physio_co_peakline
+#       regressor_trs: 0.025
+#       regressor_types: petco2
+#       infer-sig0: True
+#       infer-delay: True
+#       max-iterations: 10
+#       output-var: True
+#       output-suffix: _vb
+
+  - CvrPetCo2Glm: 
+      data: taskbreathhold_meicacons_bold_native_preprocessed
+      roi: taskbreathhold_recmagnitude_echo1_sbref_brain_mask
+      tr: 1.5
+      baseline: 0
+      regressors: task-breathhold_physio_co_peakline
+      regressor_trs: 0.025
+      regressor_types: petco2
+      delay-min: -8.0
+      delay-max: 8.0
+      delay-step: 0.25
+      output-suffix: _lGLM
+
+
+  - SaveAllExcept:
+      taskbreathhold_meicacons_bold_native_preprocessed:
+      taskbreathhold_recmagnitude_echo1_sbref_brain_mask:
+      taskbreathhold_recmagnitude_echo1_sbref_brain_mask:
+
+Cases:
+    Case1:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-01/func_preproc
+    Case2:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-02/func_preproc
+    Case4:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-04/func_preproc
+    Case5:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-05/func_preproc
+    Case6:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-06/func_preproc
+    Case7:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-07/func_preproc
+    Case8:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-08/func_preproc
+    Case9:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-09/func_preproc
+    Case10:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-001/ses-10/func_preproc
+    Case12:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-02/func_preproc
+    Case13:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-03/func_preproc
+    Case14:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-04/func_preproc
+    Case15:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-05/func_preproc
+    Case16:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-06/func_preproc
+    Case17:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-07/func_preproc
+    Case18:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-08/func_preproc
+    Case19:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-09/func_preproc
+    Case20:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-002/ses-10/func_preproc
+    Case21:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-01/func_preproc
+    Case22:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-02/func_preproc
+    Case23:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-03/func_preproc
+    Case24:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-04/func_preproc
+    Case25:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-05/func_preproc
+    Case26:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-06/func_preproc
+    Case27:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-07/func_preproc
+    Case28:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-08/func_preproc
+    Case29:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-09/func_preproc
+    Case30:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-003/ses-10/func_preproc
+    Case31:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-01/func_preproc
+    Case32:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-02/func_preproc
+    Case36:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-06/func_preproc
+    Case37:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-07/func_preproc
+    Case38:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-08/func_preproc
+    Case39:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-09/func_preproc
+    Case40:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-004/ses-10/func_preproc
+    Case41:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-01/func_preproc
+    Case42:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-02/func_preproc
+    Case43:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-03/func_preproc
+    Case44:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-04/func_preproc
+    Case45:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-05/func_preproc
+    Case46:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-06/func_preproc
+    Case47:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-07/func_preproc
+    Case48:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-08/func_preproc
+    Case49:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-09/func_preproc
+    Case50:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-005/ses-10/func_preproc
+    Case51:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-01/func_preproc
+    Case52:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-02/func_preproc
+    Case53:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-03/func_preproc
+    Case54:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-04/func_preproc
+    Case55:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-05/func_preproc
+    Case56:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-06/func_preproc
+    Case57:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-07/func_preproc
+    Case58:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-08/func_preproc
+    Case59:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-09/func_preproc
+    Case60:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-006/ses-10/func_preproc
+    Case61:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-01/func_preproc
+    Case62:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-02/func_preproc
+    Case63:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-03/func_preproc
+    Case64:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-04/func_preproc
+    Case65:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-05/func_preproc
+    Case66:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-06/func_preproc
+    Case67:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-07/func_preproc
+    Case68:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-08/func_preproc
+    Case70:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-007/ses-10/func_preproc
+    Case72:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-02/func_preproc
+    Case73:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-03/func_preproc
+    Case74:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-04/func_preproc
+    Case75:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-05/func_preproc
+    Case76:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-06/func_preproc
+    Case77:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-07/func_preproc
+    Case78:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-08/func_preproc
+    Case79:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-09/func_preproc
+    Case80:
+        Folder: /export/home/ghayes/public/PJMASK_2/VB_Quantiphyse/Data//sub-008/ses-10/func_preproc
+
